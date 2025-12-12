@@ -1,0 +1,59 @@
+{% if section.settings.show_banner %}
+  <div class="top-banner" style="background-color: {{ section.settings.banner_color }}; color: {{ section.settings.text_color }};">
+    <div class="top-banner__content">
+      {{ section.settings.banner_text }}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .top-banner {
+    padding: 12px 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .top-banner__content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Top Banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner text",
+      "default": "HOLIDAY SALE - BUY 1 GET 1 FREE"
+    },
+    {
+      "type": "color",
+      "id": "banner_color",
+      "label": "Background color",
+      "default": "#4A90E2"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Banner"
+    }
+  ]
+}
+{% endschema %}
+

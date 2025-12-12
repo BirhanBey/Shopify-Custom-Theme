@@ -1,0 +1,188 @@
+<footer class="main-footer">
+  <div class="main-footer__container">
+    <div class="main-footer__columns">
+      <div class="main-footer__column">
+        <div class="main-footer__logo">
+          <a href="{{ routes.root_url }}" class="main-footer__logo-link"
+            ><span class="main-header__logo-text" style="color: #ffffff;">
+              Aero<span class="main-footer__logo-text2-span" style="color: #4A90E2;">Pure </span>
+            </span></a
+          >
+        </div>
+      </div>
+
+      <div class="main-footer__column">
+        <h2 class="main-footer__heading">Daha iyi nefes alın, daha iyi yaşayın.</h2>
+        <p class="main-footer__mission">
+          AeroPure, herkesin gürültü, maliyet veya zahmet olmadan temiz ve sağlıklı havayı hak ettiği basit bir fikirle
+          başladı. Ürettiğimiz her ürün bu vizyonu hayata geçiriyor.
+        </p>
+      </div>
+
+      <div class="main-footer__column">
+        <h3 class="main-footer__heading">Müşteri Desteği</h3>
+        <ul>
+          <li><a href="#">Teslimat Bilgileri</a></li>
+          <li><a href="#">Siparişlinizi Takip Edin</a></li>
+          <li><a href="#">Hizmet Şartları</a></li>
+          <li><a href="#">İade ve Geri İade Politikası</a></li>
+        </ul>
+        {% comment %}
+          <nav class="main-footer__nav">
+            {% for link in section.settings.menu.links %}
+              <a href="{{ link.url }}" class="main-footer__link">{{ link.title }}</a>
+            {% endfor %}
+          </nav>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+  <div class="main-footer__bottom">
+    {% if section.settings.show_payment_icons %}
+      <div class="main-footer__payment">
+        {% for type in shop.enabled_payment_types %}
+          {{ type | payment_type_svg_tag: class: 'main-footer__payment-icon' }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="main-footer__copyright">
+      <div class="main-footer__legal">
+        {% comment %} © {{ 'now' | date: '%Y' }}, {{ shop.name | default: 'AeroPure' }} {% endcomment %}
+
+        © {{ 'now' | date: '%Y' }}, AeroPure™
+        <a href="{{ pages['privacy-policy'].url | default: '#' }}">Gizlilik Politikası -</a>
+        <a href="{{ pages['refund-policy'].url | default: '#' }}">Para İade Politikası -</a>
+        <a href="{{ pages['terms-of-service'].url | default: '#' }}">Hizmet Şartları -</a>
+        <a href="{{ pages['contact'].url | default: routes.root_url }}">İletişim Bilgileri</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .main-footer {
+    background-color: #202223;
+    color: #ffffff;
+    padding: 60px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    justify-content: space-between;
+  }
+  .main-footer__columns {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+  }
+  .main-footer__column {
+    flex: 1;
+  }
+  .main-footer__logo-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .main-footer__mission {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #8c9196;
+    max-width: 400px;
+  }
+  .main-footer__heading {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  .main-footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .main-footer__link {
+    text-decoration: none;
+    color: #8c9196;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  .main-footer__link:hover {
+    color: #ffffff;
+  }
+  .main-footer__payment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  .main-footer__payment-icon {
+    width: 40px;
+    height: 25px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .main-footer__copyright {
+    font-size: 12px;
+    color: #8c9196;
+  }
+  .main-footer__legal {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    gap: 10px;
+    /* margin-top: 10px; */
+  }
+  .main-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .main-footer__legal a {
+    color: #8c9196;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s;
+  }
+  .main-footer__legal a:hover {
+    color: #ffffff;
+  }
+  @media (max-width: 968px) {
+    .main-footer__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:labels.menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "t:labels.show_payment_icons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

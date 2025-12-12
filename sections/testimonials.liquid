@@ -1,0 +1,159 @@
+<div class="testimonials-section">
+  <div class="testimonials-section__container">
+    {% for block in section.blocks %}
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">
+            <div class="testimonial-card__star-icon">
+                {% for i in (1..5) %}
+                    <span class="star">★</span>
+                {% endfor %}
+            </div>
+            <div class="testimonial-card__quote-icon">"</div>
+        </div>
+        <h3 class="testimonial-card__title">"{{ block.settings.title }}"</h3>
+        <p class="testimonial-card__text">{{ block.settings.text }}</p>
+        <hr class="testimonial-card__divider">
+        <div class="testimonial-card__author">{{ block.settings.author }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .testimonials-section {
+    padding: 80px 20px;
+    background-color: #FFFFFF;
+  }
+  .testimonials-section__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .testimonial-card {
+    background-color: #f6f6f6;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-card__stars {
+    color: #FFD700;
+    font-size: 20px;
+    display: flex
+
+  }
+  .testimonial-card__star-icon {
+    display: flex;
+    /* gap: 5px; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* margin-bottom: 10px; */
+    margin-left: auto !important;
+  }
+  .testimonial-card__quote-icon {
+    font-size: 48px;
+    color: #4A90E2;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 10px;
+    margin-left: auto !important;
+  }
+  .testimonial-card__title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #202223;
+  }
+  .testimonial-card__text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5C5F62;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .testimonial-card__divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+  }
+  .testimonial-card__author {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202223;
+  }
+  @media (max-width: 768px) {
+    .testimonials-section {
+      padding: 40px 20px;
+    }
+    .testimonials-section__container {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "blocks": [
+    {
+      "type": "testimonial_item",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "No More Medication"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testimonial text",
+          "default": "I've been using AeroPure for 3 months and my allergies are completely gone. No more medication needed!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Graham T."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "No More Medication",
+            "text": "I've been using AeroPure for 3 months and my allergies are completely gone. No more medication needed!",
+            "author": "Graham T."
+          }
+        },
+        {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "Magical Little Remedy",
+            "text": "This product is amazing! It's helped so much with my allergy symptoms. Great gift idea too.",
+            "author": "Allison R."
+          }
+        },
+        {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "Less Asthma Attacks",
+            "text": "My asthma attacks have reduced significantly since using AeroPure. My cat also seems healthier!",
+            "author": "Susan S."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
