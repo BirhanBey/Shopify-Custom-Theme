@@ -1,0 +1,200 @@
+{
+  "sections": {
+    "hero_section": {
+      "type": "hero-section",
+      "settings": {
+        "hero_title": "Alerjiden Kurtulmanın Kolay Yolu",
+        "hero_subtitle": "Daha temiz hava, daha sağlıklı, daha derin bir uyku ve daha fazla enerji demektir. AeroPure™, evinizi ve sevdiklerinizi korumayı kolaylaştırır."
+      }
+    },
+    "guarantee_bar": {
+      "type": "guarantee-bar",
+      "settings": {
+        "bg_color": "#4A90E2",
+        "text_color": "#FFFFFF"
+      },
+      "blocks": {
+        "guarantee_1": {
+          "type": "guarantee_item",
+          "settings": {
+            "text": "60 Gün Para İade Garantisi"
+          }
+        },
+        "guarantee_2": {
+          "type": "guarantee_item",
+          "settings": {
+            "text": "Ücretsiz Kargo"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_1",
+        "guarantee_2"
+      ]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "İlaçlara Artık İhtiyacın Yok",
+            "text": "AeroPure'u 3 aydır kullanıyorum ve alerjilerim tamamen geçti. Artık ilaç kullanmama gerek yok!",
+            "author": "Birhan Y."
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "Sihirli Küçük Dokunuş",
+            "text": "Bu ürün harika! Alerji semptomlarıma çok yardımcı oldu. Aynı zamanda, harika bir hediye fikri.",
+            "author": "Can S."
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial_item",
+          "settings": {
+            "title": "Astım Ataklarım Azaldı",
+            "text": "AeroPure'u kullanmaya başladığımdan beri astım krizlerim önemli ölçüde azaldı. Kedim de daha sağlıklı görünüyor!",
+            "author": "Sulhiye S."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ]
+    },
+    "product_benefits": {
+      "type": "product-benefits",
+      "settings": {
+        "bg_color": "#4A90E2",
+        "text_color": "#FFFFFF"
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "product_benefit",
+          "settings": {
+            "title": "Masrafsız",
+            "description": "Ayda sadece birkaç kuruşa 7/24 çalışır. LED ampulden daha verimlidir."
+          }
+        },
+        "benefit_2": {
+          "type": "product_benefit",
+          "settings": {
+            "title": "Daha Temiz Hava",
+            "description": "Alerjenleri, tozu ve kokuları gidererek evinizin ferah kalmasını sağlar."
+          }
+        },
+        "benefit_3": {
+          "type": "product_benefit",
+          "settings": {
+            "title": "Hızlı Sonuçlar",
+            "description": "Sadece birkaç saat içinde daha temiz hava ve bir gün içinde alerji semptomlarında hafifleme hissedeceksiniz."
+          }
+        },
+        "benefit_4": {
+          "type": "product_benefit",
+          "settings": {
+            "title": "Ücretsiz Kargo",
+            "description": "Avustralya genelinde her siparişte takip numarası dahil ücretsiz kargo hizmetinden yararlanın."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    },
+    "main_product": {
+      "type": "main-product",
+      "settings": {
+        "badge_text": "Avustralya'nın En Çok Satan İyon Hava Temizleyici",
+        "plug_info": "Tüm AeroPure Üniteleri Aus/Nz Standart Fişlerle Donatılmıştır",
+        "show_view_details": true,
+        "product_title": "Ion Air Purifier",
+        "product_subtitle": "Havanız size karşı değil, sizin için çalışmalıdır!",
+        "product_description": "Temiz, klinik olarak kanıtlanmış havanın görünmez dönüşümünü deneyimleyin.",
+        "benefits_list": "Alerji semptomlarını hafifletir\nÇocuklar ve evcil hayvanlar için güvenlidir\nSessiz çalışır ve filtre gerektirmez\nHavadaki mikropları nötralize eder\nEvcil hayvan kokularını ve tüylerini ortadan kaldırır",
+        "show_bundle_options": true
+      },
+      "blocks": {
+        "bundle_1": {
+          "type": "bundle_option",
+          "settings": {
+            "title": "1 Alana 1 Bedava",
+            "price": "54.99",
+            "original_price": "109.98",
+            "free_shipping": true
+          }
+        },
+        "bundle_2": {
+          "type": "bundle_option",
+          "settings": {
+            "title": "2 Alana 2 Bedava",
+            "price": "109.98",
+            "original_price": "219.96",
+            "is_popular": true,
+            "free_shipping": true
+          }
+        },
+        "bundle_3": {
+          "type": "bundle_option",
+          "settings": {
+            "title": "3 Alana 3 Bedava",
+            "price": "164.97",
+            "original_price": "329.94",
+            "free_shipping": true
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ]
+    },
+    "support_icons": {
+      "type": "support-icons",
+      "settings": {
+        "bg_color": "#F6F6F7"
+      },
+      "blocks": {
+        "support_1": {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "24/7 Müşteri Desteği"
+          }
+        },
+        "support_2": {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "Ücretsiz Kargo"
+          }
+        },
+        "support_3": {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "60 Gün Risksiz Deneme Süresi"
+          }
+        }
+      },
+      "block_order": [
+        "support_1",
+        "support_2",
+        "support_3"
+      ]
+    }
+  },
+  "order": [
+    "hero_section",
+    "guarantee_bar",
+    "testimonials",
+    "product_benefits",
+    "main_product",
+    "support_icons"
+  ]
+}

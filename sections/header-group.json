@@ -1,0 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:general.header",
+  "sections": {
+    "top_banner": {
+      "type": "top-banner",
+      "settings": {
+        "show_banner": true,
+        "banner_text": "TATİL İNDİRİMİ - 1 ALANA 1 BEDAVA",
+        "banner_color": "#4A90E2",
+        "text_color": "#FFFFFF"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": [
+    "top_banner",
+    "header"
+  ],
+}

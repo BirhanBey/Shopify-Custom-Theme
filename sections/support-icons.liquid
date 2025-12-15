@@ -1,0 +1,137 @@
+<div class="support-icons">
+  <div class="support-icons__container">
+    {% for block in section.blocks %}
+      {% assign icon_svg_content = block.settings.icon_svg | strip %}
+      <div class="support-icon-card">
+        <div class="support-icon-card__icon">
+          {% if icon_svg_content != blank %}
+            {{ block.settings.icon_svg }}
+          {% else %}
+            {% assign block_index = forloop.index0 %}
+            {% if block_index == 0 %}
+              {% render 'icon-technical-support' %}
+            {% elsif block_index == 1 %}
+              {% render 'icon-free-delivery' %}
+            {% elsif block_index == 2 %}
+              {% render 'icon-approved-signal' %}
+            {% else %}
+              <span class="support-icon-card__icon-placeholder">📞</span>
+            {% endif %}
+          {% endif %}
+        </div>
+        <h3 class="support-icon-card__title">{{ block.settings.title }}</h3>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .support-icons {
+    padding: 60px 20px;
+    background-color:#e3e3e3;
+  }
+  .support-icons__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  .support-icon-card {
+    border-radius: 24px;
+    padding: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #dadada !important;
+  }
+  .support-icon-card__icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .support-icon-card__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #000000 !important;
+  }
+  .support-icon-card__icon-placeholder {
+    font-size: 48px;
+  }
+  .support-icon-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #202223;
+  }
+  @media (max-width: 768px) {
+    .support-icons {
+      padding: 40px 20px;
+    }
+    .support-icons__container {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Support Icons",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F6F6F7"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "support_icon_item",
+      "name": "Support Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "info": "Paste SVG code here"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "7/24 Müşteri Desteği"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Support Icons",
+      "blocks": [
+        {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "7/24 Müşteri Desteği"
+          }
+        },
+        {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "Ücretsiz Kargo"
+          }
+        },
+        {
+          "type": "support_icon_item",
+          "settings": {
+            "title": "60 Gün Risksiz Deneme Süresi"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

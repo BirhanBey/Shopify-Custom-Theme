@@ -1,0 +1,135 @@
+<div class="hero-section">
+  {% if section.settings.hero_image %}
+    <div class="hero-section__image">
+      {{
+        section.settings.hero_image
+        | image_url: width: 1920
+        | image_tag: loading: 'eager', alt: section.settings.hero_title
+      }}
+      <div class="hero-section__overlay">
+        <div class="hero-section__content">
+          <h1 class="hero-section__title">{{ section.settings.hero_title }}</h1>
+          <p class="hero-section__subtitle">{{ section.settings.hero_subtitle }}</p>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="hero-section__placeholder" style="background-image: url('{{ 'Hero.png' | asset_url }}');">
+      <div class="hero-section__overlay">
+        <div class="hero-section__content">
+          <h1 class="hero-section__title">{{ section.settings.hero_title }}</h1>
+          <p class="hero-section__subtitle">{{ section.settings.hero_subtitle }}</p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shopify-section {
+    display: block !important;
+  }
+  .hero-section__image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+  }
+  .hero-section__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-section__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .hero-section__placeholder {
+    width: 100%;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-section__content {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 800px;
+  }
+  .hero-section__title {
+    font-size: 56px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 24px;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .hero-section__subtitle {
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 1.7;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .hero-section__title {
+      font-size: 32px;
+    }
+    .hero-section__subtitle {
+      font-size: 16px;
+    }
+    .hero-section {
+      min-height: 400px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero title",
+      "default": "The Easy Way to Allergy Free Living"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero subtitle",
+      "default": "Cleaner air means better health, deeper sleep, and more energy. AeroPure™ makes it effortless to protect your home and loved ones."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}

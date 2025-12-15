@@ -1,0 +1,623 @@
+<div class="main-product">
+  <div class="main-product__container">
+    <div class="main-product__left">
+      {% if section.settings.badge_text != blank %}
+        <div class="main-product__badge">
+          <span class="flag-icon">🇦🇺</span>
+          {{ section.settings.badge_text }}
+          <span class="flag-icon">🇦🇺</span>
+        </div>
+      {% endif %}
+
+      {% comment %} Product Images Slider {% endcomment %}
+      <div class="main-product__images-slider-wrapper">
+        <div class="splide main-product__images-slider" id="product-images-slider">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% if section.settings.product_image_1 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_1
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% if section.settings.product_image_2 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_2
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% if section.settings.product_image_3 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_3
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% if section.settings.product_image_4 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_4
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% if section.settings.product_image_5 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_5
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% if section.settings.product_image_6 %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-image">
+                    {{
+                      section.settings.product_image_6
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: section.settings.product_title
+                    }}
+                  </div>
+                </li>
+              {% endif %}
+              {% comment %} Eğer hiç görsel yoksa placeholder göster {% endcomment %}
+              {% assign has_images = false %}
+              {% if section.settings.product_image_1
+                or section.settings.product_image_2
+                or section.settings.product_image_3
+                or section.settings.product_image_4
+                or section.settings.product_image_5
+                or section.settings.product_image_6
+              %}
+                {% assign has_images = true %}
+              {% endif %}
+              {% unless has_images %}
+                <li class="splide__slide">
+                  <div class="main-product__slider-placeholder">
+                    <p>Theme Customizer'dan ürün görselleri ekleyin</p>
+                  </div>
+                </li>
+              {% endunless %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {% if section.settings.show_view_details %}
+        <a href="{{ section.settings.view_details_url | default: '#' }}" class="main-product__view-details">
+          → Tüm Detaylar
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="main-product__right">
+      <h1 class="main-product__title">{{ section.settings.product_title }}</h1>
+      <h2 class="main-product__subtitle">{{ section.settings.product_subtitle }}</h2>
+      <p class="main-product__description">{{ section.settings.product_description }}</p>
+
+      {% if section.settings.benefits_list != blank %}
+        <ul class="main-product__benefits">
+          {% assign benefits = section.settings.benefits_list | newline_to_br | split: '<br />' %}
+          {% for benefit in benefits %}
+            {% if benefit != blank %}
+              <li>
+                <span class="checkmark">✓</span>
+                {{ benefit | strip }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if section.settings.show_bundle_options %}
+        <div class="main-product__bundle">
+          <h3 class="bundle__title">Toplu al & Kazan!</h3>
+          <form class="bundle__form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+            {% for block in section.blocks %}
+              {% if block.type == 'bundle_option' %}
+                <label class="bundle__option {% if block.settings.is_popular %}bundle__option--popular{% endif %}">
+                  <input
+                    type="radio"
+                    name="bundle"
+                    value="{{ block.settings.variant_id }}"
+                    {% if forloop.first %}
+                      checked
+                    {% endif %}
+                  >
+                  <div class="bundle__option-content">
+                    <div class="bundle__option-header">
+                      <span class="bundle__option-title">{{ block.settings.title }}</span>
+                      {% if block.settings.is_popular %}
+                        <span class="bundle__option-badge">En Çok Tercih Edilen</span>
+                      {% endif %}
+                    </div>
+                    <div class="bundle__option-price">
+                      <span class="bundle__option-price-current">₺{{ block.settings.price }}</span>
+                      {% if block.settings.original_price != blank %}
+                        <span class="bundle__option-price-original">₺{{ block.settings.original_price }}</span>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.free_shipping %}
+                      <div class="bundle__option-shipping">Ücretsiz Kargo</div>
+                    {% endif %}
+                  </div>
+                </label>
+              {% endif %}
+            {% endfor %}
+
+            <button type="submit" class="bundle__add-to-cart">SEPETE EKLE 🛒</button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .main-product {
+    padding: 80px 20px;
+    background-color: #ffffff;
+  }
+  .main-product__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .main-product__badge {
+    background-color: #4a90e2;
+    color: #ffffff;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+  }
+  .flag-icon {
+    margin: 0 8px;
+  }
+  .main-product__images-slider-wrapper {
+    margin-bottom: 20px;
+  }
+  .main-product__images-slider {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .main-product__images-slider .splide__track {
+    width: 100%;
+  }
+  .main-product__images-slider .splide__list {
+    display: flex;
+  }
+  .main-product__images-slider .splide__slide {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-product__slider-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-product__slider-image img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+  .main-product__slider-placeholder {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f6f6f7;
+    border-radius: 8px;
+    color: #5c5f62;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-product__images-slider .splide__pagination {
+    position: relative;
+    margin-top: 20px;
+    bottom: auto;
+  }
+  .main-product__images-slider .splide__pagination__page {
+    background-color: #4a90e2;
+    opacity: 0.5;
+  }
+  .main-product__images-slider .splide__pagination__page.is-active {
+    opacity: 1;
+  }
+  .main-product__images-slider .splide__arrow {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #4a90e2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .main-product__images-slider .splide__arrow svg {
+    fill: #4a90e2;
+  }
+  .main-product__view-details {
+    display: inline-block;
+    background-color: #4a90e2;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  .main-product__view-details:hover {
+    background-color: #357abd;
+  }
+  .main-product__title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #202223;
+  }
+  .main-product__subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #4a90e2;
+  }
+  .main-product__description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5c5f62;
+    margin-bottom: 30px;
+  }
+  .main-product__benefits {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  .main-product__benefits li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #202223;
+  }
+  .checkmark {
+    color: #00a86b;
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 20px;
+  }
+  .main-product__bundle {
+    background-color: #f6f6f7;
+    padding: 30px;
+    border-radius: 8px;
+  }
+  .bundle__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #202223;
+  }
+  .bundle__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .bundle__option {
+    display: block;
+    cursor: pointer;
+    border: 2px solid #e1e3e5;
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.3s;
+    background-color: #ffffff;
+  }
+  .bundle__option:hover {
+    border-color: #4a90e2;
+  }
+  .bundle__option input[type='radio'] {
+    display: none;
+  }
+  .bundle__option input[type='radio']:checked + .bundle__option-content {
+    color: #4a90e2;
+  }
+  .bundle__option--popular {
+    border-color: #4a90e2;
+    border-width: 3px;
+  }
+  .bundle__option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .bundle__option-title {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .bundle__option-badge {
+    background-color: #4a90e2;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .bundle__option-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+  .bundle__option-price-current {
+    font-size: 24px;
+    font-weight: 700;
+    color: #202223;
+  }
+  .bundle__option-price-original {
+    font-size: 16px;
+    color: #8c9196;
+    text-decoration: line-through;
+  }
+  .bundle__option-shipping {
+    font-size: 14px;
+    color: #00a86b;
+    font-weight: 600;
+  }
+  .bundle__add-to-cart {
+    width: 100%;
+    background-color: #068d13;
+    color: #ffffff;
+    border: none;
+    padding: 18px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+  .bundle__add-to-cart:hover {
+    background-color: #068d13;
+    transform: scaleY(1.05);
+    transition: transform 0.3s;
+  }
+  @media (max-width: 968px) {
+    .main-product__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Australia's Best Selling Ion Air Purifier"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_1",
+      "label": "Product image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_2",
+      "label": "Product image 2 (Opsiyonel)"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_3",
+      "label": "Product image 3 (Opsiyonel)"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_4",
+      "label": "Product image 4 (Opsiyonel)"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_5",
+      "label": "Product image 5 (Opsiyonel)"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_6",
+      "label": "Product image 6 (Opsiyonel)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_details",
+      "label": "Show view details button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "view_details_url",
+      "label": "View details URL"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product title",
+      "default": "Ion Air Purifier"
+    },
+    {
+      "type": "text",
+      "id": "product_subtitle",
+      "label": "Product subtitle",
+      "default": "Your air should work for you not against you!"
+    },
+    {
+      "type": "textarea",
+      "id": "product_description",
+      "label": "Product description",
+      "default": "Experience the invisible transformation of clean, clinically proven air."
+    },
+    {
+      "type": "textarea",
+      "id": "benefits_list",
+      "label": "Benefits list (one per line)",
+      "default": "Relieves allergy symptoms\nSafe for kids & pets\nWhisper-quiet and filter-free\nNeutralizes airborne germs\nEliminates pet odors and dander"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle_options",
+      "label": "Show bundle options",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle_option",
+      "name": "Bundle Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Buy 1 Get 1 Free"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "54.99"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "label": "Original price",
+          "default": "109.98"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "Variant ID",
+          "info": "Shopify product variant ID"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Mark as popular",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "free_shipping",
+          "label": "Free shipping",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Product",
+      "blocks": [
+        {
+          "type": "bundle_option",
+          "settings": {
+            "title": "Buy 1 Get 1 Free",
+            "price": "54.99",
+            "original_price": "109.98"
+          }
+        },
+        {
+          "type": "bundle_option",
+          "settings": {
+            "title": "Buy 2 Get 2 Free",
+            "price": "109.98",
+            "original_price": "219.96",
+            "is_popular": true
+          }
+        },
+        {
+          "type": "bundle_option",
+          "settings": {
+            "title": "Buy 3 Get 3 Free",
+            "price": "164.97",
+            "original_price": "329.94"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  (function () {
+    function initImagesSlider() {
+      if (typeof Splide !== 'undefined') {
+        const sliderElement = document.querySelector('#product-images-slider');
+        if (sliderElement) {
+          const slides = sliderElement.querySelectorAll('.splide__slide');
+          const slideCount = slides.length;
+
+          if (slideCount > 0) {
+            new Splide('#product-images-slider', {
+              type: 'slide',
+              perPage: 1,
+              perMove: 1,
+              gap: '0px',
+              pagination: slideCount > 1,
+              arrows: slideCount > 1,
+              autoplay: slideCount > 1 ? 'play' : false,
+              interval: 5000,
+              pauseOnHover: true,
+              resetProgress: false,
+              speed: 300,
+              rewind: false,
+              width: '100%',
+            }).mount();
+          }
+        }
+      } else {
+        setTimeout(initImagesSlider, 100);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initImagesSlider);
+    } else {
+      initImagesSlider();
+    }
+  })();
+{% endjavascript %}

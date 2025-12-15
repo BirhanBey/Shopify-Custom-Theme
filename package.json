@@ -1,0 +1,15 @@
+{
+  "name": "aeropure-theme",
+  "version": "1.0.0",
+  "description": "Aeropure Shopify Theme",
+  "scripts": {
+    "dev": "shopify theme dev",
+    "push": "shopify theme push",
+    "pull": "shopify theme pull",
+    "check": "shopify theme check"
+  },
+  "keywords": ["shopify", "theme"],
+  "author": "",
+  "license": "MIT"
+}
+

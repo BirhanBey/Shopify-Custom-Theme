@@ -1,0 +1,174 @@
+<header class="main-header">
+  <div class="main-header__container">
+    <nav class="main-header__nav">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}" class="main-header__link {% if link.active %}active{% endif %}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="main-header__logo">
+      <a href="{{ routes.root_url }}" class="main-header__logo-link">
+        {% if section.settings.logo_image %}
+          {{
+            section.settings.logo_image
+            | image_url: width: 200
+            | image_tag: alt: shop.name, class: 'main-header__logo-img'
+          }}
+        {% else %}
+          <span class="main-header__logo-text">
+            Aero<span class="main-header__logo-text2-span" style="color: #4A90E2;">Pure </span>
+          </span>
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="main-header__actions">
+      <a href="{{ routes.search_url }}" class="main-header__icon" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 19L14.65 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" class="main-header__icon" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor"/>
+            <path d="M10 12C5.58172 12 2 14.2386 2 17V20H18V17C18 14.2386 14.4183 12 10 12Z" fill="currentColor"/>
+          </svg>
+        </a>
+      {% endif %}
+
+      <a href="{{ routes.cart_url }}" class="main-header__icon main-header__cart" aria-label="Cart">
+        {% if cart.item_count > 0 %}
+          <span class="main-header__cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 7H15L14 15H6L5 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 7V4C7 2.89543 7.89543 2 9 2H11C12.1046 2 13 2.89543 13 4V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% stylesheet %}
+  .main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e1e3e5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .main-header__container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+  .main-header__nav {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+  }
+  .main-header__link {
+    text-decoration: none;
+    color: #202223;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .main-header__link:hover {
+    color: #4a90e2;
+  }
+  .main-header__link.active {
+    background-color: #4a90e2;
+    color: #ffffff;
+  }
+  .main-header__logo {
+    flex: 1;
+    text-align: center;
+  }
+  .main-header__logo-link {
+    text-decoration: none;
+    display: inline-block;
+  }
+  .main-header__logo-img {
+    max-height: 50px;
+    width: auto;
+  }
+  .main-header__logo-text {
+    color: #202223;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+  .main-header__actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .main-header__icon {
+    color: #202223;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .main-header__icon:hover {
+    color: #4a90e2;
+  }
+  .main-header__cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  @media (max-width: 768px) {
+    .main-header__nav {
+      display: none;
+    }
+    .main-header__container {
+      padding: 0 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:labels.menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
