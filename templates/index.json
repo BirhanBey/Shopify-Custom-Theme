@@ -1,14 +1,5 @@
 {
   "sections": {
-    "top_banner": {
-      "type": "top-banner",
-      "settings": {
-        "show_banner": true,
-        "banner_text": "TATİL İNDİRİMİ - 1 ALANA 1 BEDAVA",
-        "banner_color": "#4A90E2",
-        "text_color": "#FFFFFF"
-      }
-    },
     "hero_section": {
       "type": "hero-section",
       "settings": {
@@ -131,20 +122,6 @@
         "show_bundle_options": true
       },
       "blocks": {
-        "slide_1": {
-          "type": "product_slide",
-          "settings": {
-            "slide_image": "",
-            "slide_content": ""
-          }
-        },
-        "slide_2": {
-          "type": "product_slide",
-          "settings": {
-            "slide_image": "",
-            "slide_content": ""
-          }
-        },
         "bundle_1": {
           "type": "bundle_option",
           "settings": {
@@ -213,7 +190,6 @@
     }
   },
   "order": [
-    "top_banner",
     "hero_section",
     "guarantee_bar",
     "testimonials",

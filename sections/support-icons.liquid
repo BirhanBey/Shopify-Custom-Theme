@@ -1,4 +1,4 @@
-<div class="support-icons" style="background-color: {{ section.settings.bg_color | default: '#e3e3e3' }};">
+<div class="support-icons">
   <div class="support-icons__container">
     {% for block in section.blocks %}
       {% assign icon_svg_content = block.settings.icon_svg | strip %}
@@ -28,6 +28,7 @@
 {% stylesheet %}
   .support-icons {
     padding: 60px 20px;
+    background-color:#e3e3e3;
   }
   .support-icons__container {
     max-width: 1200px;

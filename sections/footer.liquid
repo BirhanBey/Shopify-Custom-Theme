@@ -22,10 +22,18 @@
       <div class="main-footer__column">
         <h3 class="main-footer__heading">Müşteri Desteği</h3>
         <ul>
-          <li><a href="#">Teslimat Bilgileri</a></li>
-          <li><a href="#">Siparişlinizi Takip Edin</a></li>
-          <li><a href="#">Hizmet Şartları</a></li>
-          <li><a href="#">İade ve Geri İade Politikası</a></li>
+          <li>
+            <a href="#">Teslimat Bilgileri</a>
+          </li>
+          <li>
+            <a href="#">Siparişlinizi Takip Edin</a>
+          </li>
+          <li>
+            <a href="#">Hizmet Şartları</a>
+          </li>
+          <li>
+            <a href="#">İade ve Geri İade Politikası</a>
+          </li>
         </ul>
         {% comment %}
           <nav class="main-footer__nav">
@@ -37,6 +45,8 @@
       </div>
     </div>
   </div>
+
+  <hr style="border: 0.5px solid #2d2d2d; width: 100%; margin: 40px 0 10px 0;">
 
   <div class="main-footer__bottom">
     {% if section.settings.show_payment_icons %}
@@ -62,9 +72,9 @@
 
 {% stylesheet %}
   .main-footer {
-    background-color: #202223;
+    background-color: #000000;
     color: #ffffff;
-    padding: 60px 20px 30px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +84,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    grid-template-columns: 2fr 1fr 1fr;
+    /* grid-template-columns: 2fr 1fr 1fr; */
     gap: 60px;
     justify-content: space-between;
   }
@@ -84,7 +94,10 @@
     gap: 60px;
   }
   .main-footer__column {
-    flex: 1;
+    flex: 0.33;
+  }
+  .main-footer__logo {
+    margin-right: 100px;
   }
   .main-footer__logo-link {
     text-decoration: none;
@@ -96,16 +109,33 @@
     margin-bottom: 20px;
   }
   .main-footer__mission {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
-    color: #8c9196;
+    color: #ffffff;
     max-width: 400px;
+    letter-spacing: 0.5px;
   }
   .main-footer__heading {
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 20px;
     color: #ffffff;
+  }
+  .main-footer__column ul li {
+    color: #ffffff;
+    text-decoration: none;
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  .main-footer__column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    margin-left: -40px;
+  }
+  .main-footer__column ul li a:hover {
+    color: #8c9196;
   }
   .main-footer__nav {
     display: flex;
