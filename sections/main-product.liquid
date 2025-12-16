@@ -1,13 +1,6 @@
 <div class="main-product">
   <div class="main-product__container">
     <div class="main-product__left">
-      {% if section.settings.badge_text != blank %}
-        <div class="main-product__badge">
-          <span class="flag-icon">🇦🇺</span>
-          {{ section.settings.badge_text }}
-          <span class="flag-icon">🇦🇺</span>
-        </div>
-      {% endif %}
 
       {% comment %} Product Images Slider {% endcomment %}
       <div class="main-product__images-slider-wrapper">
@@ -185,16 +178,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
-  }
-  .main-product__badge {
-    background-color: #4a90e2;
-    color: #ffffff;
-    padding: 12px 20px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 30px;
-    border-radius: 4px;
   }
   .flag-icon {
     margin: 0 8px;
