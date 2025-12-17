@@ -16,8 +16,9 @@
       "settings": {
         "show_banner": true,
         "banner_text": "TATİL İNDİRİMİ - 1 ALANA 1 BEDAVA",
-        "banner_color": "#4A90E2",
-        "text_color": "#FFFFFF"
+        "banner_color": "#71a6e3",
+        "text_color": "#FFFFFF",
+        "font_size": "28px",
       }
     },
     "header": {

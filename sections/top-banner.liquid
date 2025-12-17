@@ -1,5 +1,8 @@
 {% if section.settings.show_banner %}
-  <div class="top-banner" style="background-color: {{ section.settings.banner_color }}; color: {{ section.settings.text_color }};">
+  <div
+    class="top-banner"
+    style="background-color: {{ section.settings.banner_color }}; color: {{ section.settings.text_color }};"
+  >
     <div class="top-banner__content">
       {{ section.settings.banner_text }}
     </div>
@@ -11,8 +14,8 @@
     padding: 12px 0;
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    font-size: 17px;
+    letter-spacing: 1px;
   }
   .top-banner__content {
     max-width: 100%;
@@ -40,7 +43,7 @@
       "type": "color",
       "id": "banner_color",
       "label": "Background color",
-      "default": "#4A90E2"
+      "default": "#71a6e3"
     },
     {
       "type": "color",
@@ -56,4 +59,3 @@
   ]
 }
 {% endschema %}
-

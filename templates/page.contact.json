@@ -1,0 +1,15 @@
+{
+    "sections": {
+        "contact_form": {
+            "type": "contact-form",
+            "settings": {
+                "show_header": true,
+                "title": "Bize Ulaşın, Gerisini Biz Hallederiz",
+                "description": "Ürün bilgileri, gönderim detayları veya siparişle ilgili yardım gibi konularda size yardımcı olmaya hazırız. Aşağıdaki formu doldurun veya bize e-posta gönderin. Talebinizi mümkün olan en kısa sürede yerine getirebilmemiz için, varsa sipariş numaranızı da belirtin."
+            }
+        }
+    },
+    "order": [
+        "contact_form"
+    ]
+}

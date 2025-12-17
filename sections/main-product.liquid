@@ -1,7 +1,6 @@
 <div class="main-product">
   <div class="main-product__container">
     <div class="main-product__left">
-
       {% comment %} Product Images Slider {% endcomment %}
       <div class="main-product__images-slider-wrapper">
         <div class="splide main-product__images-slider" id="product-images-slider">
@@ -95,12 +94,6 @@
           </div>
         </div>
       </div>
-
-      {% if section.settings.show_view_details %}
-        <a href="{{ section.settings.view_details_url | default: '#' }}" class="main-product__view-details">
-          → Tüm Detaylar
-        </a>
-      {% endif %}
     </div>
 
     <div class="main-product__right">
@@ -163,6 +156,12 @@
         </div>
       {% endif %}
     </div>
+
+    {% if section.settings.show_view_details %}
+      <a href="{{ section.settings.view_details_url | default: '#' }}" class="main-product__view-details">
+        → Tüm Detaylar
+      </a>
+    {% endif %}
   </div>
 </div>
 

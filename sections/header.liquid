@@ -1,9 +1,32 @@
 <header class="main-header">
   <div class="main-header__container">
     <nav class="main-header__nav">
-      {% for link in section.settings.menu.links %}
-        <a href="{{ link.url }}" class="main-header__link {% if link.active %}active{% endif %}">{{ link.title }}</a>
-      {% endfor %}
+      {% comment %} Hardcoded navigation links {% endcomment %}
+      <a href="{{ routes.root_url }}" class="main-header__link {% if request.page_type == 'index' %}active{% endif %}"
+        >AnaSayfa</a
+      >
+      <a
+        href="/pages/contact"
+        class="main-header__link {% if page.handle == 'contact' or page.template_suffix == 'contact' %}active{% endif %}"
+        >İletişim</a
+      >
+      <a
+        href="/products/ion-air-purifier"
+        class="main-header__link {% if product.handle == 'ion-air-purifier' %}active{% endif %}"
+        >Ion Air Purifier</a
+      >
+      <a
+        href="/pages/track-your-order"
+        class="main-header__link {% if page.handle == 'track-your-order' %}active{% endif %}"
+        >Track Your Order</a
+      >
+
+      {% comment %} Alternative: Use Shopify menu if you prefer {% endcomment %}
+      {% comment %}
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}" class="main-header__link {% if link.active %}active{% endif %}">{{ link.title }}</a>
+        {% endfor %}
+      {% endcomment %}
     </nav>
 
     <div class="main-header__logo">
@@ -56,13 +79,10 @@
   .main-header {
     background-color: #ffffff;
     border-bottom: 1px solid #e1e3e5;
-    position: sticky;
-    top: 0;
-    z-index: 100;
   }
   .main-header__container {
     max-width: 1600px;
-    margin: 0 auto;
+    margin: 12px auto;
     padding: 0 40px;
     display: flex;
     align-items: center;
@@ -71,29 +91,36 @@
   }
   .main-header__nav {
     display: flex;
-    gap: 30px;
+    /* gap: 8px; */
     flex: 1;
+    flex-wrap: nowrap;
+    align-items: center;
   }
   .main-header__link {
     text-decoration: none;
-    color: #202223;
+    color:rgb(91, 95, 96);
     font-size: 15px;
-    font-weight: 500;
-    padding: 8px 16px;
+    font-weight: 300;
+    padding: 5px 16px;
     border-radius: 4px;
     transition: all 0.3s;
     position: relative;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .main-header__link:hover {
     color: #4a90e2;
   }
   .main-header__link.active {
-    background-color: #4a90e2;
+    background-color:#71a6e3;
     color: #ffffff;
+    padding: 5px 16px;
+    font-weight: bold;
   }
   .main-header__logo {
     flex: 1;
     text-align: center;
+        max-width: 200px;
   }
   .main-header__logo-link {
     text-decoration: none;
@@ -105,7 +132,7 @@
   }
   .main-header__logo-text {
     color: #202223;
-    font-size: 28px;
+    font-size: 42px;
     font-weight: 700;
     letter-spacing: -1px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
